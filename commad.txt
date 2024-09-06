@@ -1,0 +1,13 @@
+echo "GET http://example.com" | vegeta attack -duration=2s -rate=1/s --output results.bin
+vegeta report results.bin
+
+
+echo "GET http://example.com" | vegeta attack -duration=10s -rate=10 -connections=100 | vegeta report
+
+vegeta attack -targets=target.txt -duration=10s -rate=10 -connections=100 | vegeta report
+
+vegeta attack -targets=target.txt -duration=10s -rate=10 -connections=100 | vegeta encode > results.json
+
+vegeta attack -targets=target.txt -duration=10s -rate=10 -connections=100 | vegeta encode > results.gob
+
+vegeta plot results.json > results.html
